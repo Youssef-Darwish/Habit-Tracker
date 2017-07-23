@@ -1,5 +1,7 @@
 package com.example.android.habittracker.data;
 
+import android.widget.ImageView;
+
 import java.util.ArrayList;
 
 /**
@@ -65,12 +67,14 @@ public class Habit {
     }
 
 
-    public int getNumberOfDays(){
-        return numberOfDays.size();
+    public ArrayList<Integer> getNumberOfDays(){
+        return numberOfDays;
     }
 
 
-
+    public int getReminder (){
+        return this.reminder;
+    }
 
 
 
