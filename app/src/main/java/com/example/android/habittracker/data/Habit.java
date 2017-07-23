@@ -1,6 +1,5 @@
 package com.example.android.habittracker.data;
 
-import android.widget.ImageView;
 
 import java.util.ArrayList;
 
