@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+
+        android:title="Compose"
+        android:icon="@drawable/ic_info_black_24dp"
+        android:id="@+id/info_black_id"
+        app:showAsAction = "ifRoom"
+
+        >
+    </item>
+    <item
+        android:title = "Ay kalb"
+        android:id = "@+id/sync_item_id"
+        android:icon = "@drawable/ic_sync_black_24dp"
+        app:showAsAction="ifRoom"
+        >
+    </item>
+</menu>
