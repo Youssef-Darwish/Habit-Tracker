@@ -1,39 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
+    android:orientation="vertical"
+    android:layout_marginBottom="@dimen/bottom_margin"
+    android:id="@+id/card_view"
     tools:context="com.example.android.habittracker.item">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+       <TextView
             android:id="@+id/item_title"
-            android:layout_marginTop="@dimen/top_margin"
-            android:layout_marginBottom="@dimen/bottom_margin"
-            android:layout_marginLeft="@dimen/bottom_margin"
-
-            android:textSize="@dimen/normal_textview_text_size"
-            />
-        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/item_description"
-            android:layout_marginTop="@dimen/top_margin"
-            android:textSize="@dimen/normal_textview_text_size"
             android:layout_marginBottom="@dimen/bottom_margin"
             android:layout_marginLeft="@dimen/bottom_margin"
-            />
+            android:layout_marginTop="@dimen/top_margin"
+           android:layout_alignParentTop="true"
+            android:textSize="@dimen/normal_textview_text_size" />
 
-
-
-
-
-
-
-
-
-
-</LinearLayout>
+        <TextView
+            android:id="@+id/item_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/item_title"
+            android:layout_marginBottom="@dimen/bottom_margin"
+            android:layout_marginLeft="@dimen/bottom_margin"
+            android:layout_marginTop="@dimen/top_margin"
+            android:textSize="@dimen/normal_textview_text_size" />
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

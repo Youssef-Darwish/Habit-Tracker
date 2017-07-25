@@ -18,6 +18,7 @@ import java.util.ArrayList;
 public class HabitsAdapter extends RecyclerView.Adapter<HabitsAdapter.HabitViewHolder>{
 
     private ArrayList<Habit> habitsList;
+    private View root;
 
     public class HabitViewHolder extends RecyclerView.ViewHolder{
 
@@ -25,7 +26,6 @@ public class HabitsAdapter extends RecyclerView.Adapter<HabitsAdapter.HabitViewH
 
         public HabitViewHolder(View itemView) {
             super(itemView);
-
             title = (TextView) itemView.findViewById(R.id.item_title);
             description = (TextView) itemView.findViewById(R.id.item_description);
 
@@ -49,13 +49,12 @@ public class HabitsAdapter extends RecyclerView.Adapter<HabitsAdapter.HabitViewH
             Habit habit = habitsList.get(position);
             holder.title.setText(habit.getTitle());
             holder.description.setText(habit.getDescription());
-    }
 
+    }
     @Override
     public int getItemCount() {
        return habitsList.size();
     }
-
 
 
 }

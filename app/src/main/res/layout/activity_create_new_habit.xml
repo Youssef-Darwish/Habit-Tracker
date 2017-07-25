@@ -85,6 +85,59 @@
 
     </Spinner>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Number of Days to build habit:"
+        android:layout_marginBottom="@dimen/bottom_margin"
+        android:layout_marginTop="@dimen/top_margin"
+        android:layout_marginLeft="@dimen/left_margin"
+        android:layout_marginRight="@dimen/right_margin"
+        android:textSize="@dimen/normal_textview_text_size"
+        />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint=" Enter Number of Days"
+        android:id="@+id/habitDaysEditText"
+        android:layout_marginBottom="@dimen/bottom_margin"
+        android:layout_marginTop="@dimen/top_margin"
+        android:layout_marginLeft="@dimen/left_margin"
+        android:layout_marginRight="@dimen/right_margin"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Set a notification for habit"
+        android:layout_marginBottom="@dimen/bottom_margin"
+        android:layout_marginTop="@dimen/top_margin"
+        android:layout_marginLeft="@dimen/left_margin"
+        android:layout_marginRight="@dimen/right_margin"
+        android:textSize="@dimen/normal_textview_text_size"
+        />
+
+    <RadioGroup
+        android:id="@+id/radio_set_notification"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <RadioButton
+            android:id="@+id/radio_with_notification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Yes"
+            android:checked="true" />
+
+        <RadioButton
+            android:id="@+id/radio_no_notification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No" />
+
+    </RadioGroup>
+
+
 
 </LinearLayout>
 </ScrollView>
