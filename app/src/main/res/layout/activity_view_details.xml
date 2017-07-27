@@ -24,6 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:text="Habit Title"
+        android:id="@+id/title_show_details"
         android:layout_marginBottom="@dimen/bottom_margin"
         android:layout_marginLeft="@dimen/bottom_margin"
         android:layout_marginTop="@dimen/top_margin"
@@ -36,8 +37,15 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginBottom="@dimen/bottom_margin"
+        android:id="@+id/description_show_details"
         android:layout_marginLeft="@dimen/bottom_margin"
         android:layout_marginTop="@dimen/top_margin"
         android:textSize="@dimen/normal_textview_text_size" />
+
+    <CalendarView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        
+    </CalendarView>
 
 </LinearLayout>

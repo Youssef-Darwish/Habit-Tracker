@@ -1,5 +1,6 @@
 package com.example.android.habittracker;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -7,8 +8,9 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
-
+import com.example.android.habittracker.HabitsAdapter.HabitViewHolder;
 import com.example.android.habittracker.data.Habit;
 
 import java.util.ArrayList;
@@ -75,5 +77,18 @@ public class MainActivity extends AppCompatActivity {
             habitsList.add(h);
         }
         mAdapter.notifyDataSetChanged();
+    }
+
+    public void tryActivity(View view){
+
+        HabitViewHolder holder = (HabitViewHolder) view.getTag();
+
+        System.out.println(holder.description.getText().toString());
+
+        Intent intent  = new Intent(this,ViewDetails.class);
+        intent.putExtra("Title",holder.title.getText().toString());
+        intent.putExtra("Description",holder.description.getText().toString());
+        startActivity(intent);
+
     }
 }
