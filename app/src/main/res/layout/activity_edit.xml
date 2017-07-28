@@ -1,9 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.example.android.habittracker.EditActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_red_light"
+        android:fitsSystemWindows="true"
+        android:minHeight="?attr/actionBarSize"
+        app:titleTextColor="@android:color/black">
+
+    </android.support.v7.widget.Toolbar>
+
+
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/titleEditText"
+        android:textSize="@dimen/normal_textview_text_size"
+        android:layout_marginBottom="@dimen/bottom_margin"
+        android:layout_marginTop="@dimen/top_margin"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/descriptionEditText"
+        android:textSize="@dimen/normal_textview_text_size"
+        android:layout_marginBottom="@dimen/bottom_margin"
+        android:layout_marginTop="@dimen/top_margin"
+        />
+
+</LinearLayout>

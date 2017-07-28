@@ -1,5 +1,6 @@
 package com.example.android.habittracker;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -20,9 +21,9 @@ import static android.icu.lang.UCharacter.GraphemeClusterBreak.T;
 public class MainActivity extends AppCompatActivity {
 
 
-    private ArrayList<Habit> habitsList;
+    public static ArrayList<Habit> habitsList;
     private RecyclerView mrecyclerview;
-    private HabitsAdapter mAdapter;
+    public static HabitsAdapter mAdapter;
     private Toolbar toolbar;
 
     @Override
@@ -60,6 +61,11 @@ public class MainActivity extends AppCompatActivity {
                 Toast toast = new Toast(this);
                 toast.makeText(this,"info item was selected",Toast.LENGTH_LONG).show();
                 return true;
+            case R.id.add_habit_item:
+                Intent intent = new Intent(this,CreateNewHabit.class);
+                startActivity(intent);
+
+
 
             default:return super.onOptionsItemSelected(item);
         }
@@ -76,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
             h = new Habit("title" + String.valueOf(i),"description" + String.valueOf(i),"",0,0);
             habitsList.add(h);
         }
+
         mAdapter.notifyDataSetChanged();
     }
 
@@ -88,7 +95,27 @@ public class MainActivity extends AppCompatActivity {
         Intent intent  = new Intent(this,ViewDetails.class);
         intent.putExtra("Title",holder.title.getText().toString());
         intent.putExtra("Description",holder.description.getText().toString());
-        startActivity(intent);
+        intent.putExtra("position",holder.getAdapterPosition());
 
+        startActivityForResult(intent,1);
+
+
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode==1){
+            if(resultCode == Activity.RESULT_OK){
+                int position = data.getIntExtra("position",5);
+                habitsList.remove(position);
+                mAdapter.notifyDataSetChanged();
+            }
+            if(resultCode == Activity.RESULT_CANCELED){
+                Toast t = new Toast(this);
+                t.makeText(this,"no deletion",Toast.LENGTH_LONG).show();
+                mAdapter.notifyDataSetChanged();
+            }
+        }
     }
 }

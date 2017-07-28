@@ -8,6 +8,7 @@
         android:title="Add Habit"
         android:icon="@drawable/add"
         app:showAsAction="ifRoom"
+        android:id = "@+id/add_habit_item"
         >
 
     </item>

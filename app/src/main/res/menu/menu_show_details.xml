@@ -3,12 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
 
-        android:title="Compose"
+        android:title="Edit"
         android:icon="@drawable/icon_edit"
         android:id="@+id/edit_item"
         app:showAsAction = "ifRoom"
 
         >
+    </item>
+    <item
+
+        android:title="Delete"
+        android:icon="@drawable/trash"
+        android:id = "@+id/delete_item"
+        android:layout_height="10dp"
+        android:layout_width="10dp"
+        app:showAsAction="ifRoom"
+        >
+
     </item>
 
 </menu>
