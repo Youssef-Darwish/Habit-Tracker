@@ -23,12 +23,13 @@ public class HabitsAdapter extends RecyclerView.Adapter<HabitsAdapter.HabitViewH
     private CardView cardView;
     public class HabitViewHolder extends RecyclerView.ViewHolder{
 
-        public TextView title,description;
+        public TextView title,description,category;
 
         public HabitViewHolder(View itemView) {
             super(itemView);
             title = (TextView) itemView.findViewById(R.id.item_title);
             description = (TextView) itemView.findViewById(R.id.item_description);
+            category = (TextView) itemView.findViewById(R.id.item_category);
             cardView = (CardView)itemView.findViewById(R.id.card_view);
             cardView.setTag(this);
         }
@@ -51,6 +52,7 @@ public class HabitsAdapter extends RecyclerView.Adapter<HabitsAdapter.HabitViewH
             Habit habit = habitsList.get(position);
             holder.title.setText(habit.getTitle());
             holder.description.setText(habit.getDescription());
+            holder.category.setText(habit.getCategory());
 
     }
     @Override

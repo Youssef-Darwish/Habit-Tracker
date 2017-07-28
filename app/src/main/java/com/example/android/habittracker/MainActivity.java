@@ -78,8 +78,9 @@ public class MainActivity extends AppCompatActivity {
         Habit h = new Habit("title1","description1","",0,0);
         habitsList.add(h);
 
-        for (int i = 0; i<50; i++){
-            h = new Habit("title" + String.valueOf(i),"description" + String.valueOf(i),"",0,0);
+        for (int i = 0; i<20; i++){
+            h = new Habit("title" + String.valueOf(i),"description" + String.valueOf(i),
+                    "category " + String.valueOf(i),0,0);
             habitsList.add(h);
         }
 
