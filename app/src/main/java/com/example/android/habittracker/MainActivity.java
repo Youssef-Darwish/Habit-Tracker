@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 import com.example.android.habittracker.HabitsAdapter.HabitViewHolder;
+import com.example.android.habittracker.data.DBAdapter;
 import com.example.android.habittracker.data.Habit;
 
 import java.util.ArrayList;
@@ -25,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView mrecyclerview;
     public static HabitsAdapter mAdapter;
     private Toolbar toolbar;
-
+    public static DBAdapter dbAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,12 +35,22 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         habitsList = new ArrayList<Habit>();
         mrecyclerview = (RecyclerView) findViewById(R.id.recycler_view);
+        dbAdapter = new DBAdapter(this);
+        dbAdapter.open();
+        habitsList = dbAdapter.getAllData();
+
         mAdapter  =  new HabitsAdapter(habitsList);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         mrecyclerview.setLayoutManager(mLayoutManager);
         mrecyclerview.setAdapter(mAdapter);
+              mAdapter.notifyDataSetChanged();
+        for (int i =0; i<habitsList.size();i++){
+            System.out.println(habitsList.get(i).getTitle());
+            System.out.println(habitsList.get(i).getDescription());
+            System.out.println(habitsList.get(i).getCategory());
+        }
 
-        makeFakeData();
+        //makeFakeData();
 
 
 

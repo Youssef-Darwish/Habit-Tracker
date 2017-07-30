@@ -50,8 +50,8 @@ public class Habit {
         reminder = remind;
     }
 
-    public void setNumberOfDays(int days){
-        numberOfDays = new ArrayList<>(days);
+    public void setNumberOfDays(ArrayList<Integer> arrayList){
+        numberOfDays = arrayList;
     }
     public String getTitle(){
         return title;

@@ -3,11 +3,15 @@ package com.example.android.habittracker.data;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
+
 import com.example.android.habittracker.data.Habit;
 import com.example.android.habittracker.data.HabitContract.HabitEntry;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -22,9 +26,9 @@ public class DBAdapter {
 
     private SQLiteDatabase database;
     private DBHelper dbHelper;
-
+    private static String TAG = DBAdapter.class.toString();
     private String[] allColumns = {HabitEntry._ID, HabitEntry.COLUMN_HABIT_TITLE, HabitEntry.COLUMN_HABIT_DESCRIPTION,
-            HabitEntry.COLUMN_HABIT_CATEGORY, HabitEntry.COLUMN_HABIT_DAYS, HabitEntry.COLUMN_HABIT_DAYS};
+            HabitEntry.COLUMN_HABIT_CATEGORY, HabitEntry.COLUMN_HABIT_DAYS, HabitEntry.COLUMN_HABIT_NOTIFICATION};
 
     public DBAdapter(Context context) {
         dbHelper = new DBHelper(context);
@@ -56,7 +60,8 @@ public class DBAdapter {
         values.put(HabitEntry.COLUMN_HABIT_NOTIFICATION,habit.getReminder());
         String days = ArrayListToString(habit.getNumberOfDays());
         values.put(HabitEntry.COLUMN_HABIT_DAYS,days);
-
+        Log.d(TAG,habit.getTitle());
+        Log.d(TAG,habit.getDescription());
         database.insert(HabitEntry.TABLE_NAME,null,values);
 
     }
@@ -83,6 +88,46 @@ public class DBAdapter {
 
     }
 
+    public ArrayList<Habit> getAllData(){
+
+        ArrayList<Habit> habits = new ArrayList<>();
+        ContentValues values = new ContentValues();
+        Cursor cursor = database.query(HabitEntry.TABLE_NAME,allColumns,null,null,null,null,null);
+
+        cursor.moveToFirst();
+        while(!cursor.isAfterLast()){
+            Habit temp = cursorToHabit(cursor);
+            habits.add(temp);
+            cursor.moveToNext();
+
+        }
+
+
+        return habits;
+
+    }
+    private Habit cursorToHabit(Cursor cursor){
+
+        Habit h = new Habit("","","",0,0);
+        h.setTitle(cursor.getString(1));
+        h.setDescription(cursor.getString(2));
+        h.setCategory(cursor.getString(3
+        ));
+/*
+        try {
+            JSONObject object = new JSONObject(cursor.getString(3));
+            JSONArray ar = object.optJSONArray("uniqueArray");
+
+        }
+        catch (JSONException e){
+            Log.e("DBAdapter","cannot convert string to json");
+            //do sth
+        }
+
+        h.setReminder(cursor.getInt(4));
+*/
+        return h;
+    }
 
     // methods not yet implemented :
     // getAll , select , what else ?

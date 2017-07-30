@@ -128,23 +128,36 @@
         <RadioGroup
             android:id="@+id/radio_set_notification"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+
+            >
 
             <RadioButton
                 android:id="@+id/radio_with_notification"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:checked="true"
+
                 android:text="Yes" />
 
             <RadioButton
                 android:id="@+id/radio_no_notification"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:checked="true"
                 android:text="No" />
 
 
         </RadioGroup>
+
+        <TimePicker
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/time_picker"
+            android:visibility="gone"
+            >
+
+        </TimePicker>
+
 
         <FrameLayout
             android:layout_width="wrap_content"
