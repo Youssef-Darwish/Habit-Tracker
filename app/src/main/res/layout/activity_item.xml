@@ -2,42 +2,48 @@
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
     android:layout_marginBottom="@dimen/bottom_margin"
-    android:id="@+id/card_view"
-    android:onClick="tryActivity"
+    android:background="@color/aqua"
+
+    android:onClick="viewDetails"
+    android:orientation="vertical"
     tools:context="com.example.android.habittracker.item">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-       <TextView
+        <TextView
             android:id="@+id/item_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
             android:layout_marginBottom="@dimen/bottom_margin"
             android:layout_marginLeft="@dimen/bottom_margin"
-           android:layout_marginRight="20dp"
+            android:layout_marginRight="20dp"
             android:layout_marginTop="@dimen/top_margin"
-           android:layout_alignParentTop="true"
-            android:textSize="@dimen/normal_textview_text_size" />
+            android:textSize="@dimen/normal_textview_text_size"
+            android:textColor="@color/black"
+
+            />
 
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_marginRight="@dimen/right_margin"
-            android:layout_height="wrap_content"
             android:id="@+id/item_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/bottom_margin"
             android:layout_marginLeft="@dimen/bottom_margin"
+            android:layout_marginRight="@dimen/right_margin"
             android:layout_marginTop="@dimen/top_margin"
-            android:textSize="@dimen/normal_textview_text_size"
             android:layout_toRightOf="@+id/item_title"
-
+            android:textSize="@dimen/normal_textview_text_size"
+            android:textColor="@color/blue"
             />
+
         <TextView
             android:id="@+id/item_description"
             android:layout_width="wrap_content"
@@ -46,7 +52,9 @@
             android:layout_marginBottom="@dimen/bottom_margin"
             android:layout_marginLeft="@dimen/bottom_margin"
             android:layout_marginTop="@dimen/top_margin"
-            android:textSize="@dimen/normal_textview_text_size" />
+            android:textSize="@dimen/normal_textview_text_size"
+            android:textColor="@color/navy"/>
+
 
     </RelativeLayout>
 </android.support.v7.widget.CardView>

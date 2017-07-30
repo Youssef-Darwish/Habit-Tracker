@@ -84,7 +84,7 @@ public class DBAdapter {
     }
     public void deleteHabit (Habit habit){
         String title = habit.getTitle();
-        database.delete(HabitEntry.TABLE_NAME,HabitEntry.COLUMN_HABIT_TITLE + " = " + title,null);
+        database.delete(HabitEntry.TABLE_NAME,HabitEntry.COLUMN_HABIT_TITLE + "='"+title+"'",null);
 
     }
 

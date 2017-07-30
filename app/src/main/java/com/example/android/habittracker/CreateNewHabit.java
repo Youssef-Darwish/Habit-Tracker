@@ -41,6 +41,7 @@ public class CreateNewHabit extends AppCompatActivity {
         setContentView(R.layout.activity_create_new_habit);
         toolbar  = (Toolbar) findViewById(R.id.toolbar_create);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Add New Habit");
         spinner = (Spinner) findViewById(R.id.categoriesSpinner);
         titleEditText = (EditText) findViewById(R.id.habitNameEditText);
         descriptionEditText = (EditText) findViewById(R.id.habitDescriptionEditText);
@@ -68,9 +69,6 @@ public class CreateNewHabit extends AppCompatActivity {
         MainActivity.habitsList.add(h);
         MainActivity.dbAdapter.addHabit(h);
 
-        ArrayList<Habit> hList = MainActivity.dbAdapter.getAllData();
-        Log.d("list size",String.valueOf(hList.size()));
-        Log.d("list data",hList.get(5).getTitle());
         MainActivity.mAdapter.notifyDataSetChanged();
         Toast toast = new Toast(this);
         toast.makeText(this,"Habit added",Toast.LENGTH_LONG).show();

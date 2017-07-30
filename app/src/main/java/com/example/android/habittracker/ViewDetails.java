@@ -24,6 +24,7 @@ public class ViewDetails extends AppCompatActivity {
         setContentView(R.layout.activity_view_details);
         toolbar = (Toolbar) findViewById(R.id.toolbar_edit);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Habit Details");
         titleTextView = (TextView) findViewById(R.id.title_show_details);
         descriptionTextView =(TextView) findViewById(R.id.description_show_details);
 

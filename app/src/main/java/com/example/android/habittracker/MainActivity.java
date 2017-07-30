@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public static ArrayList<Habit> habitsList;
+
     private RecyclerView mrecyclerview;
     public static HabitsAdapter mAdapter;
     private Toolbar toolbar;
@@ -33,12 +34,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         toolbar  =(Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("All Habits");
         habitsList = new ArrayList<Habit>();
         mrecyclerview = (RecyclerView) findViewById(R.id.recycler_view);
         dbAdapter = new DBAdapter(this);
         dbAdapter.open();
         habitsList = dbAdapter.getAllData();
-
         mAdapter  =  new HabitsAdapter(habitsList);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         mrecyclerview.setLayoutManager(mLayoutManager);
@@ -98,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
         mAdapter.notifyDataSetChanged();
     }
 
-    public void tryActivity(View view){
+    public void viewDetails(View view){
 
         HabitViewHolder holder = (HabitViewHolder) view.getTag();
 
@@ -120,6 +121,7 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode==1){
             if(resultCode == Activity.RESULT_OK){
                 int position = data.getIntExtra("position",5);
+                dbAdapter.deleteHabit(habitsList.get(position));
                 habitsList.remove(position);
                 mAdapter.notifyDataSetChanged();
             }
