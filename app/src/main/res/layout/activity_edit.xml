@@ -36,5 +36,21 @@
         android:layout_marginBottom="@dimen/bottom_margin"
         android:layout_marginTop="@dimen/top_margin"
         />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/categoryEditText"
+        android:textSize="@dimen/normal_textview_text_size"
+        android:layout_marginBottom="@dimen/bottom_margin"
+        android:layout_marginTop="@dimen/top_margin"
 
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save changes"
+        android:onClick="saveChanges"
+
+        />
 </LinearLayout>

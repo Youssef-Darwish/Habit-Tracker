@@ -17,7 +17,7 @@ import com.example.android.habittracker.data.Habit;
 
 import java.util.ArrayList;
 
-import static android.icu.lang.UCharacter.GraphemeClusterBreak.T;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -50,7 +50,6 @@ public class MainActivity extends AppCompatActivity {
             System.out.println(habitsList.get(i).getDescription());
             System.out.println(habitsList.get(i).getCategory());
         }
-
         //makeFakeData();
 
 
@@ -109,13 +108,13 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra("Title",holder.title.getText().toString());
         intent.putExtra("Description",holder.description.getText().toString());
         intent.putExtra("position",holder.getAdapterPosition());
-
-        startActivityForResult(intent,1);
+        intent.putExtra("category",holder.category.getText().toString());
+        startActivity(intent);
 
 
 
     }
-
+/*
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode==1){
@@ -132,4 +131,5 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+    */
 }

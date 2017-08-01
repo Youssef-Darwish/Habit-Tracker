@@ -18,6 +18,8 @@ public class ViewDetails extends AppCompatActivity {
     private TextView titleTextView;
     private TextView descriptionTextView;
     private int position;
+    private String category;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,50 +28,50 @@ public class ViewDetails extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Habit Details");
         titleTextView = (TextView) findViewById(R.id.title_show_details);
-        descriptionTextView =(TextView) findViewById(R.id.description_show_details);
+        descriptionTextView = (TextView) findViewById(R.id.description_show_details);
 
         Bundle extras = getIntent().getExtras();
         titleTextView.setText(extras.getString("Title"));
         descriptionTextView.setText(extras.getString("Description"));
         position = extras.getInt("position");
-
+        category = extras.getString("category");
 
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_show_details,menu);
+        getMenuInflater().inflate(R.menu.menu_show_details, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        switch (item.getItemId()){
-            case R.id.edit_item:
-                Toast editToast = new Toast(this);
-                editToast.makeText(this,"new edit activity",Toast.LENGTH_LONG).show();
-                Intent intentEdit = new Intent(this,EditActivity.class);
-                System.out.println(titleTextView.getText().toString());
-                intentEdit.putExtra("title",titleTextView.getText().toString());
-                intentEdit.putExtra("description",descriptionTextView.getText().toString());
+        if (item.getItemId() == R.id.edit_item) {
 
-                startActivity(intentEdit);
+            Toast editToast = new Toast(this);
+            editToast.makeText(this, "new edit activity", Toast.LENGTH_LONG).show();
+            Intent intentEdit = new Intent(this, EditActivity.class);
+            System.out.println(titleTextView.getText().toString());
+            intentEdit.putExtra("title", titleTextView.getText().toString());
+            intentEdit.putExtra("description", descriptionTextView.getText().toString());
+            intentEdit.putExtra("category", category);
+            intentEdit.putExtra("position",position);
+            startActivity(intentEdit);
+        } else if (item.getItemId() == R.id.delete_item) {
 
-            case R.id.delete_item:
+            MainActivity.dbAdapter.deleteHabit(MainActivity.habitsList.get(position));
+            MainActivity.habitsList.remove(position);
+            MainActivity.mAdapter.notifyDataSetChanged();
 
-                Intent returnIntent = new Intent();
-                returnIntent.putExtra("position",position);
-                Toast toast = new Toast(this);
-                toast.makeText(this,"Habit Deleted!",Toast.LENGTH_LONG).show();
-                setResult(Activity.RESULT_OK,returnIntent);
-                finish();
+            Toast toast = new Toast(this);
+            toast.makeText(this, "Habit Deleted!", Toast.LENGTH_LONG).show();
+            finish();
 
-            default: return true;
 
         }
 
-
+        return true;
     }
 }
 

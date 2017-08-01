@@ -21,7 +21,7 @@
         <activity android:name=".SettingsActivity" />
         <activity android:name=".AboutActivity" />
         <activity android:name=".item" />
-        <activity android:name=".ViewDetails"></activity>
+        <activity android:name=".ViewDetails" />
     </application>
 
 </manifest>
