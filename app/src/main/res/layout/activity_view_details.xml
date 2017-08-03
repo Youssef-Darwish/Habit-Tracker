@@ -42,10 +42,6 @@
         android:layout_marginTop="@dimen/top_margin"
         android:textSize="@dimen/normal_textview_text_size" />
 
-    <CalendarView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-    </CalendarView>
 
 </LinearLayout>

@@ -49,7 +49,7 @@ public class EditActivity extends AppCompatActivity {
         MainActivity.habitsList.get(position).setDescription(descriptionEditView.getText().toString());
         MainActivity.habitsList.get(position).setCategory(categoryEditText.getText().toString());
         // we will encounter a problem while updating
-        // MainActivity.dbAdapter.updateHabit();    
+        // MainActivity.dbAdapter.updateHabit();
         MainActivity.mAdapter.notifyDataSetChanged();
         finish();
     }
