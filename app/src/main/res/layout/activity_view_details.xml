@@ -43,5 +43,11 @@
         android:textSize="@dimen/normal_textview_text_size" />
 
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/imageView_glide"
 
+
+        />
 </LinearLayout>
