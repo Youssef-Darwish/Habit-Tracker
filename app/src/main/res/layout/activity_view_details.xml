@@ -42,6 +42,28 @@
         android:layout_marginTop="@dimen/top_margin"
         android:textSize="@dimen/normal_textview_text_size" />
 
+    <TextView
+        android:text="Category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="@dimen/bottom_margin"
+        android:id="@+id/category_show_details"
+        android:layout_marginLeft="@dimen/bottom_margin"
+        android:layout_marginTop="@dimen/top_margin"
+        android:textSize="@dimen/normal_textview_text_size" />
+
+    <TextView
+        android:text="Time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="@dimen/bottom_margin"
+        android:id="@+id/notification_time_show_details"
+        android:layout_marginLeft="@dimen/bottom_margin"
+        android:layout_marginTop="@dimen/top_margin"
+        android:textSize="@dimen/normal_textview_text_size" />
+
 
     <ImageView
         android:layout_width="match_parent"

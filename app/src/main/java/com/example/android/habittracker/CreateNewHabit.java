@@ -1,7 +1,9 @@
 package com.example.android.habittracker;
 
+import android.annotation.TargetApi;
 import android.content.Intent;
 import android.database.Cursor;
+import android.os.Build;
 import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -35,43 +37,52 @@ public class CreateNewHabit extends AppCompatActivity {
     private RadioGroup radioGroup;
     private RadioButton yesRadioButton;
     private TimePicker timePicker;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_new_habit);
-        toolbar  = (Toolbar) findViewById(R.id.toolbar_create);
+        toolbar = (Toolbar) findViewById(R.id.toolbar_create);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Add New Habit");
         spinner = (Spinner) findViewById(R.id.categoriesSpinner);
         titleEditText = (EditText) findViewById(R.id.habitNameEditText);
         descriptionEditText = (EditText) findViewById(R.id.habitDescriptionEditText);
-        timePicker= (TimePicker) findViewById(R.id.time_picker);
+        timePicker = (TimePicker) findViewById(R.id.time_picker);
         radioGroup = (RadioGroup) findViewById(R.id.radio_set_notification);
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
-                    if (checkedId == R.id.radio_with_notification){
-                        timePicker.setVisibility(View.VISIBLE);
-                    }
-                    else
-                        timePicker.setVisibility(View.GONE);
+                if (checkedId == R.id.radio_with_notification) {
+                    timePicker.setVisibility(View.VISIBLE);
+                } else
+                    timePicker.setVisibility(View.GONE);
             }
         });
 
     }
 
+    @TargetApi(Build.VERSION_CODES.M)
+    public void addHabit(View view) throws JSONException {
 
-    public void addHabit(View view)throws JSONException{
+        Habit h;
+        if (timePicker.getVisibility() == View.VISIBLE) {
+            h = new Habit(titleEditText.getText().toString(),
+                    descriptionEditText.getText().toString()
+                    , spinner.getSelectedItem().toString(), 0, 0, timePicker.getHour());
 
-        Habit h = new Habit(titleEditText.getText().toString(),
-                descriptionEditText.getText().toString()
-                ,spinner.getSelectedItem().toString(),0,0);
+        } else {
+            h = new Habit(titleEditText.getText().toString(),
+                    descriptionEditText.getText().toString()
+                    , spinner.getSelectedItem().toString(), 0, 0);
+
+        }
         MainActivity.habitsList.add(h);
         MainActivity.dbAdapter.addHabit(h);
 
         MainActivity.mAdapter.notifyDataSetChanged();
         Toast toast = new Toast(this);
-        toast.makeText(this,"Habit added",Toast.LENGTH_LONG).show();
+        toast.makeText(this, "Habit added", Toast.LENGTH_LONG).show();
         finish();
     }
 }

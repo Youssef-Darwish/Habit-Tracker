@@ -16,66 +16,83 @@ public class Habit {
     private String category;
     private int reminder;
     private ArrayList<Integer> numberOfDays;
+    private int notificationTime;
 
-
-    public Habit(String title, String desc, String catg,int days, int remind){
+    public Habit(String title, String desc, String catg, int days, int remind) {
         this.title = title;
-        this.category  = catg;
+        this.category = catg;
         this.description = desc;
         numberOfDays = new ArrayList<>(days);
         this.reminder = remind;
     }
 
-    public Habit(String title, String catg,int days, int remind){
+    public Habit(String title, String catg, int days, int remind) {
         this.title = title;
-        this.category  = catg;
+        this.category = catg;
         numberOfDays = new ArrayList<>(days);
         this.reminder = remind;
     }
 
+    public Habit(String title, String desc, String catg, int days, int remind, int date) {
+        this.title = title;
+        this.category = catg;
+        this.description = desc;
+        numberOfDays = new ArrayList<>(days);
+        this.reminder = remind;
+        this.notificationTime = date;
+    }
 
-    public void setTitle(String tit){
+
+    public void setTitle(String tit) {
         this.title = tit;
     }
 
-    public void setDescription(String desc){
+    public void setDescription(String desc) {
         description = desc;
 
     }
-    public void setCategory(String catg){
+
+    public void setCategory(String catg) {
         category = catg;
     }
 
-    public void setReminder(int remind){
+    public void setNotificationTime(int time) {
+        this.notificationTime = time;
+    }
+
+    public void setReminder(int remind) {
         reminder = remind;
     }
 
-    public void setNumberOfDays(ArrayList<Integer> arrayList){
+    public void setNumberOfDays(ArrayList<Integer> arrayList) {
         numberOfDays = arrayList;
     }
-    public String getTitle(){
+
+    public String getTitle() {
         return title;
     }
 
-    public String getDescription(){
+    public String getDescription() {
         return description;
     }
 
-    public String getCategory(){
+    public String getCategory() {
         return category;
     }
 
 
-    public ArrayList<Integer> getNumberOfDays(){
+    public ArrayList<Integer> getNumberOfDays() {
         return numberOfDays;
     }
 
 
-    public int getReminder (){
-        return this.reminder;
+    public int getNotificationTime() {
+        return notificationTime;
     }
 
-
+    public int getReminder() {
+        return this.reminder;
+    }
 
 
 }

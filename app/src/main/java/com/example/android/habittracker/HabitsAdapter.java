@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import com.example.android.habittracker.data.Habit;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 /**
@@ -23,7 +25,7 @@ public class HabitsAdapter extends RecyclerView.Adapter<HabitsAdapter.HabitViewH
     private CardView cardView;
     public class HabitViewHolder extends RecyclerView.ViewHolder{
 
-        public TextView title,description,category;
+        public TextView title,description,category,notification_time;
 
         public HabitViewHolder(View itemView) {
             super(itemView);
@@ -31,6 +33,7 @@ public class HabitsAdapter extends RecyclerView.Adapter<HabitsAdapter.HabitViewH
             description = (TextView) itemView.findViewById(R.id.item_description);
             category = (TextView) itemView.findViewById(R.id.item_category);
             cardView = (CardView)itemView.findViewById(R.id.card_view);
+
             cardView.setTag(this);
         }
     }

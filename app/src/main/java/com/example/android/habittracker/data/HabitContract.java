@@ -22,5 +22,7 @@ public class HabitContract {
 
         public static final String COLUMN_HABIT_NOTIFICATION = "notification";
 
+        public static final String COLUMN_HABIT_NOTIFICATION_TIME = "time";
+
     }
 }

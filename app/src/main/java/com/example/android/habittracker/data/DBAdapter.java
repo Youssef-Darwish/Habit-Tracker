@@ -28,7 +28,8 @@ public class DBAdapter {
     private DBHelper dbHelper;
     private static String TAG = DBAdapter.class.toString();
     private String[] allColumns = {HabitEntry._ID, HabitEntry.COLUMN_HABIT_TITLE, HabitEntry.COLUMN_HABIT_DESCRIPTION,
-            HabitEntry.COLUMN_HABIT_CATEGORY, HabitEntry.COLUMN_HABIT_DAYS, HabitEntry.COLUMN_HABIT_NOTIFICATION};
+            HabitEntry.COLUMN_HABIT_CATEGORY, HabitEntry.COLUMN_HABIT_DAYS, HabitEntry.COLUMN_HABIT_NOTIFICATION
+            ,HabitEntry.COLUMN_HABIT_NOTIFICATION_TIME};
 
     public DBAdapter(Context context) {
         dbHelper = new DBHelper(context);
@@ -111,8 +112,8 @@ public class DBAdapter {
         Habit h = new Habit("","","",0,0);
         h.setTitle(cursor.getString(1));
         h.setDescription(cursor.getString(2));
-        h.setCategory(cursor.getString(3
-        ));
+        h.setCategory(cursor.getString(3));
+        h.setNotificationTime(cursor.getInt(6));
 /*
         try {
             JSONObject object = new JSONObject(cursor.getString(3));
