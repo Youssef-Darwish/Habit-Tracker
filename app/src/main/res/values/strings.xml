@@ -4,7 +4,7 @@
     <string name="title_activity_settings">Settings</string>
     <string name="habit_name">Choose a name for your new habit </string>
     <string name="habit_description">Add optional description</string>
-
+    <string name="habit_about_title">About Habit Tracker</string>
     <!-- Strings related to Settings -->
     <string-array name="categories_options">
 

@@ -24,8 +24,8 @@
     </item>
     <item
         android:title = "Ay kalb"
-        android:id = "@+id/sync_item_id"
-        android:icon = "@drawable/ic_sync_black_24dp"
+        android:id = "@+id/about_item"
+        android:icon = "@drawable/about"
         app:showAsAction="ifRoom"
         >
     </item>

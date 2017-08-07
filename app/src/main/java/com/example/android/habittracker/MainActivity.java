@@ -25,6 +25,8 @@ import com.example.android.habittracker.data.Habit;
 
 import java.util.ArrayList;
 
+import static junit.runner.Version.id;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -74,20 +76,21 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        switch (item.getItemId()) {
+        if (item.getItemId() == R.id.info_black_id) {
+            Toast toast = new Toast(this);
+            toast.makeText(this, "info item was selected", Toast.LENGTH_LONG).show();
+            return true;
+        } else if (item.getItemId() == R.id.add_habit_item) {
+            Intent intent = new Intent(this, CreateNewHabit.class);
+            startActivity(intent);
 
-            case R.id.info_black_id:
-                Toast toast = new Toast(this);
-                toast.makeText(this, "info item was selected", Toast.LENGTH_LONG).show();
-                return true;
-            case R.id.add_habit_item:
-                Intent intent = new Intent(this, CreateNewHabit.class);
-                startActivity(intent);
+        } else if (item.getItemId() == R.id.about_item) {
+            Intent intentAbout = new Intent(this, AboutActivity.class);
+            startActivity(intentAbout);
 
-
-            default:
-                return super.onOptionsItemSelected(item);
         }
+
+        return super.onOptionsItemSelected(item);
 
 
     }

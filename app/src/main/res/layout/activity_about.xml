@@ -1,9 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.android.habittracker.AboutActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/about_title_textView"
+        android:text="@string/habit_about_title"
+        android:layout_marginBottom="@dimen/bottom_margin"
+        android:layout_marginLeft="@dimen/bottom_margin"
+        android:layout_marginTop="@dimen/top_margin"
+        android:textSize="@dimen/normal_textview_text_size"
+        android:textColor="@color/navy"
+        />
+
+</LinearLayout>
