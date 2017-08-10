@@ -112,7 +112,8 @@
             android:layout_marginLeft="@dimen/left_margin"
             android:layout_marginRight="@dimen/right_margin"
             android:layout_marginTop="@dimen/top_margin"
-            android:hint=" Enter Number of Days" />
+            android:hint=" Enter Number of Days"
+            android:inputType="number"/>
 
         <TextView
             android:layout_width="wrap_content"

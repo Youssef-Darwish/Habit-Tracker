@@ -14,6 +14,7 @@ import android.support.v7.app.NotificationCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -37,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     public static HabitsAdapter mAdapter;
     private Toolbar toolbar;
     public static DBAdapter dbAdapter;
-
+    public static String TAG  = MainActivity.class.toString();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -119,6 +120,8 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra("Description", holder.description.getText().toString());
         intent.putExtra("position", holder.getAdapterPosition());
         intent.putExtra("category", holder.category.getText().toString());
+        Log.d(TAG, holder.category.getText().toString());
+
         startActivity(intent);
 
 
