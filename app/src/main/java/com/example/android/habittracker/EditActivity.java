@@ -12,6 +12,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.example.android.habittracker.MainActivity;
 
+import org.json.JSONException;
+
 public class EditActivity extends AppCompatActivity {
 
     private EditText titleEditView;
@@ -42,15 +44,17 @@ public class EditActivity extends AppCompatActivity {
 
     }
 
-    public void saveChanges(View view) {
+    public void saveChanges(View view) throws JSONException{
 
-
+        String oldTitle = MainActivity.habitsList.get(position).getTitle();
         MainActivity.habitsList.get(position).setTitle(titleEditView.getText().toString());
         MainActivity.habitsList.get(position).setDescription(descriptionEditView.getText().toString());
         MainActivity.habitsList.get(position).setCategory(categoryEditText.getText().toString());
+        MainActivity.dbAdapter.updateHabit(oldTitle,MainActivity.habitsList.get(position));
         // we will encounter a problem while updating
         // MainActivity.dbAdapter.updateHabit();
         MainActivity.mAdapter.notifyDataSetChanged();
-        finish();
+        Intent intent = new Intent(this,MainActivity.class);
+        startActivity(intent);
     }
 }

@@ -67,20 +67,22 @@ public class DBAdapter {
 
     }
 
-    public void updateHabit(Habit oldHabit, Habit newHabit) throws JSONException {
+    public void updateHabit(String oldHabitTitle, Habit newHabit) throws JSONException {
 
         ContentValues values = new ContentValues();
         values.put(HabitEntry.COLUMN_HABIT_TITLE,newHabit.getTitle());
         values.put(HabitEntry.COLUMN_HABIT_DESCRIPTION,newHabit.getDescription());
         values.put(HabitEntry.COLUMN_HABIT_CATEGORY,newHabit.getCategory());
-        values.put(HabitEntry.COLUMN_HABIT_NOTIFICATION,newHabit.getReminder());
-        String days = ArrayListToString(newHabit.getNumberOfDays());
-        values.put(HabitEntry.COLUMN_HABIT_DAYS,days);
+      //  values.put(HabitEntry.COLUMN_HABIT_NOTIFICATION,newHabit.getReminder());
+       // String days = ArrayListToString(newHabit.getNumberOfDays());
+        //values.put(HabitEntry.COLUMN_HABIT_DAYS,days);
 
-        String oldHabitTitle = oldHabit.getTitle();
-
+        Log.d(TAG,newHabit.getTitle());
+        Log.d(TAG,newHabit.getDescription());
+        Log.d(TAG,newHabit.getCategory());
+        Log.d(TAG,oldHabitTitle);
         database.update(HabitEntry.TABLE_NAME,values,
-                HabitEntry.COLUMN_HABIT_TITLE + " =" + oldHabitTitle,null);
+                HabitEntry.COLUMN_HABIT_TITLE +  "='"+oldHabitTitle+"'",null);
 
     }
     public void deleteHabit (Habit habit){
