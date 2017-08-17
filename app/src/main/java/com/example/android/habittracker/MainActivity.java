@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-
+/*
     private void makeFakeData() {
         Habit h = new Habit("title1", "description1", "", 0, 0);
         habitsList.add(h);
@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
 
         mAdapter.notifyDataSetChanged();
     }
-
+*/
     public void viewDetails(View view) {
 
         HabitViewHolder holder = (HabitViewHolder) view.getTag();

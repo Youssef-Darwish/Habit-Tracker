@@ -17,29 +17,33 @@ public class Habit {
     private int reminder;
     private ArrayList<Integer> numberOfDays;
     private int notificationTime;
+    private String startDate;
 
-    public Habit(String title, String desc, String catg, int days, int remind) {
+    public Habit(String title, String desc, String catg, int days, int remind, String date) {
         this.title = title;
         this.category = catg;
         this.description = desc;
         numberOfDays = new ArrayList<>(days);
         this.reminder = remind;
+        startDate = date;
     }
 
-    public Habit(String title, String catg, int days, int remind) {
+    public Habit(String title, String catg, int days, int remind, String date) {
         this.title = title;
         this.category = catg;
         numberOfDays = new ArrayList<>(days);
         this.reminder = remind;
+        startDate = date;
     }
 
-    public Habit(String title, String desc, String catg, int days, int remind, int date) {
+    public Habit(String title, String desc, String catg, int days, int remind, int notificationTime, String date) {
         this.title = title;
         this.category = catg;
         this.description = desc;
         numberOfDays = new ArrayList<>(days);
         this.reminder = remind;
-        this.notificationTime = date;
+        this.notificationTime = notificationTime;
+        startDate = date;
     }
 
 
@@ -80,6 +84,12 @@ public class Habit {
         return category;
     }
 
+    public String getStartDate(){
+        return startDate;
+    }
+    public void setStartDate(String date){
+        this.startDate = date;
+    }
 
     public ArrayList<Integer> getNumberOfDays() {
         return numberOfDays;

@@ -29,7 +29,7 @@ public class DBAdapter {
     private static String TAG = DBAdapter.class.toString();
     private String[] allColumns = {HabitEntry._ID, HabitEntry.COLUMN_HABIT_TITLE, HabitEntry.COLUMN_HABIT_DESCRIPTION,
             HabitEntry.COLUMN_HABIT_CATEGORY, HabitEntry.COLUMN_HABIT_DAYS, HabitEntry.COLUMN_HABIT_NOTIFICATION
-            ,HabitEntry.COLUMN_HABIT_NOTIFICATION_TIME};
+            ,HabitEntry.COLUMN_HABIT_NOTIFICATION_TIME,HabitEntry.COLUMN_hABIT_START_DATE};
 
     public DBAdapter(Context context) {
         dbHelper = new DBHelper(context);
@@ -59,6 +59,7 @@ public class DBAdapter {
         values.put(HabitEntry.COLUMN_HABIT_DESCRIPTION,habit.getDescription());
         values.put(HabitEntry.COLUMN_HABIT_CATEGORY,habit.getCategory());
         values.put(HabitEntry.COLUMN_HABIT_NOTIFICATION,habit.getReminder());
+        values.put(HabitEntry.COLUMN_hABIT_START_DATE,habit.getStartDate());
         String days = ArrayListToString(habit.getNumberOfDays());
         values.put(HabitEntry.COLUMN_HABIT_DAYS,days);
         Log.d(TAG,habit.getTitle());
@@ -111,12 +112,13 @@ public class DBAdapter {
     }
     private Habit cursorToHabit(Cursor cursor){
 
-        Habit h = new Habit("","","",0,0);
+        Habit h = new Habit("","","",0,0,"");
         h.setTitle(cursor.getString(1));
         h.setDescription(cursor.getString(2));
         h.setCategory(cursor.getString(3));
         h.setNotificationTime(cursor.getInt(6));
-/*
+        h.setStartDate(cursor.getString(7));
+        /*
         try {
             JSONObject object = new JSONObject(cursor.getString(3));
             JSONArray ar = object.optJSONArray("uniqueArray");

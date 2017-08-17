@@ -13,7 +13,7 @@ public class DBHelper extends SQLiteOpenHelper{
 
     private static final String DATABASE_NAME = "habits.db";
 
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 3;
 
     public DBHelper(Context context){
         super(context,DATABASE_NAME,null,DATABASE_VERSION);
@@ -31,7 +31,8 @@ public class DBHelper extends SQLiteOpenHelper{
                 HabitEntry.COLUMN_HABIT_CATEGORY + " TEXT NOT NULL, " +
                 HabitEntry.COLUMN_HABIT_DAYS + " TEXT NOT NULL, " +
                 HabitEntry.COLUMN_HABIT_NOTIFICATION + " INTEGER, " +
-                HabitEntry.COLUMN_HABIT_NOTIFICATION_TIME+ " INTEGER " +
+                HabitEntry.COLUMN_HABIT_NOTIFICATION_TIME+ " INTEGER, " +
+                HabitEntry.COLUMN_hABIT_START_DATE+ " TEXT " +
                 ");";
 
         db.execSQL(CREATE_TABLE);

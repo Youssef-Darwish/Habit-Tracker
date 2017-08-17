@@ -23,7 +23,9 @@ import com.example.android.habittracker.MainActivity;
 
 import org.json.JSONException;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import static android.R.string.no;
 
@@ -37,6 +39,7 @@ public class CreateNewHabit extends AppCompatActivity {
     private RadioGroup radioGroup;
     private RadioButton yesRadioButton;
     private TimePicker timePicker;
+    private static String TAG = CreateNewHabit.class.toString();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,16 +68,21 @@ public class CreateNewHabit extends AppCompatActivity {
     @TargetApi(Build.VERSION_CODES.M)
     public void addHabit(View view) throws JSONException {
 
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date todaysDate = new Date();
+        String dateString = dateFormat.format(todaysDate);
+
         Habit h;
         if (timePicker.getVisibility() == View.VISIBLE) {
+            Log.d(TAG, dateString);
             h = new Habit(titleEditText.getText().toString(),
                     descriptionEditText.getText().toString()
-                    , spinner.getSelectedItem().toString(), 0, 0, timePicker.getHour());
+                    , spinner.getSelectedItem().toString(), 0, 0, timePicker.getHour(), dateString);
 
         } else {
             h = new Habit(titleEditText.getText().toString(),
                     descriptionEditText.getText().toString()
-                    , spinner.getSelectedItem().toString(), 0, 0);
+                    , spinner.getSelectedItem().toString(), 0, 0, dateString);
 
         }
         MainActivity.habitsList.add(h);
