@@ -67,11 +67,11 @@ public class DBAdapter {
         values.put(HabitEntry.COLUMN_HABIT_CATEGORY,habit.getCategory());
         values.put(HabitEntry.COLUMN_HABIT_NOTIFICATION,habit.getReminder());
         values.put(HabitEntry.COLUMN_hABIT_START_DATE,habit.getStartDate());
-        Log.d(TAG,String.valueOf(habit.getDays().size()));
+        //Log.d(TAG,String.valueOf(habit.getDays().size()));
         String days = ArrayListToString(habit.getDays());
         values.put(HabitEntry.COLUMN_HABIT_DAYS,days);
-        Log.d(TAG,habit.getTitle());
-        Log.d(TAG,habit.getDescription());
+        //Log.d(TAG,habit.getTitle());
+        //Log.d(TAG,habit.getDescription());
         database.insert(HabitEntry.TABLE_NAME,null,values);
 
     }
@@ -83,8 +83,8 @@ public class DBAdapter {
         values.put(HabitEntry.COLUMN_HABIT_DESCRIPTION,newHabit.getDescription());
         values.put(HabitEntry.COLUMN_HABIT_CATEGORY,newHabit.getCategory());
       //  values.put(HabitEntry.COLUMN_HABIT_NOTIFICATION,newHabit.getReminder());
-       // String days = ArrayListToString(newHabit.getNumberOfDays());
-        //values.put(HabitEntry.COLUMN_HABIT_DAYS,days);
+        String days = ArrayListToString(newHabit.getDays());
+        values.put(HabitEntry.COLUMN_HABIT_DAYS,days);
 
         Log.d(TAG,newHabit.getTitle());
         Log.d(TAG,newHabit.getDescription());

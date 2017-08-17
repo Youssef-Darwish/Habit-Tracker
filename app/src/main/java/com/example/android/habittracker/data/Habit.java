@@ -1,6 +1,8 @@
 package com.example.android.habittracker.data;
 
 
+import android.util.Log;
+
 import java.util.ArrayList;
 
 /**
@@ -18,12 +20,14 @@ public class Habit {
     private ArrayList<Integer> numberOfDays;
     private int notificationTime;
     private String startDate;
-
+    private static String TAG = Habit.class.toString();
     public Habit(String title, String desc, String catg, int days, int remind, String date) {
         this.title = title;
         this.category = catg;
         this.description = desc;
-        numberOfDays = new ArrayList<>(days);
+      //  Log.d(TAG,String.valueOf(days));
+        numberOfDays = new ArrayList<Integer>(days);
+
         initializeDaysValues(days);
         this.reminder = remind;
         startDate = date;
@@ -33,7 +37,8 @@ public class Habit {
     public Habit(String title, String catg, int days, int remind, String date) {
         this.title = title;
         this.category = catg;
-        numberOfDays = new ArrayList<>(days);
+        numberOfDays = new ArrayList<Integer>(days);
+
         initializeDaysValues(days);
         this.reminder = remind;
         startDate = date;
@@ -44,6 +49,7 @@ public class Habit {
         this.category = catg;
         this.description = desc;
         numberOfDays = new ArrayList<>(days);
+     //   Log.d(TAG,String.valueOf(days));
         initializeDaysValues(days);
         this.reminder = remind;
         this.notificationTime = notificationTime;
@@ -126,7 +132,7 @@ public class Habit {
 
     public void initializeDaysValues(int size){
         for (int i=0;i<size;i++){
-            numberOfDays.set(i,0);
+            numberOfDays.add(0);
         }
     }
 }

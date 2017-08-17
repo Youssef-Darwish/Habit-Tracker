@@ -21,6 +21,7 @@ import com.bumptech.glide.Glide;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import static android.R.id.edit;
@@ -105,7 +106,7 @@ public class ViewDetails extends AppCompatActivity {
 
         int numberOfDays;
         try {
-            todaysDate = new Date();
+            todaysDate = new  SimpleDateFormat("dd/MM/yyyy").parse("21/08/2017");
             startDate = new SimpleDateFormat("dd/MM/yyyy").
                     parse(MainActivity.habitsList.get(position).getStartDate());
             Log.d(TAG,todaysDate.toString());
@@ -127,7 +128,10 @@ public class ViewDetails extends AppCompatActivity {
                     MainActivity.habitsList.get(position));
             MainActivity.mAdapter.notifyDataSetChanged();
             Log.d("date modified", String.valueOf(numberOfDays));
-            Log.d("","");
+            ArrayList<Integer> temp = MainActivity.habitsList.get(position).getDays();
+            for(int i =0; i<temp.size();i++){
+                Log.d(TAG,String.valueOf(temp.get(i)));
+            }
         } catch (Exception e) {
             e.printStackTrace();
             // add toast to indicate error

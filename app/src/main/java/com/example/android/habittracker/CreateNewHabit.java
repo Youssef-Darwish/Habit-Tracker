@@ -76,7 +76,8 @@ public class CreateNewHabit extends AppCompatActivity {
 
         Habit h;
         if (timePicker.getVisibility() == View.VISIBLE) {
-     //       Log.d(TAG, dateString);
+           //Log.d(TAG, dateString);
+            //System.out.println(Integer.parseInt(numberOfDaysEditText.getText().toString()));
             h = new Habit(titleEditText.getText().toString(),
                     descriptionEditText.getText().toString()
                     , spinner.getSelectedItem().toString(), Integer.parseInt(numberOfDaysEditText.getText().toString())
