@@ -3,7 +3,8 @@ package com.example.android.habittracker.data;
 import android.provider.BaseColumns;
 
 /**
- * Created by youssef on 22/07/17.
+ * Created by Youssef on 22/07/17.
+ * This class defines the contract of the database
  */
 
 public class HabitContract {

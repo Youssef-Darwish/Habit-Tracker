@@ -10,6 +10,7 @@ import android.util.Log;
 
 import com.example.android.habittracker.data.Habit;
 import com.example.android.habittracker.data.HabitContract.HabitEntry;
+import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -35,12 +36,18 @@ public class DBAdapter {
         dbHelper = new DBHelper(context);
     }
 
+
+
     public String ArrayListToString(ArrayList<Integer> days) throws JSONException {
 
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("uniqueArray",days);
-        String stringToReturn = jsonObject.toString();
-        return stringToReturn;
+        Gson gson = new Gson();
+        return gson.toJson(days);
+    }
+
+    public ArrayList<Integer> stringToArrayList(String string) throws JSONException{
+        Gson gson = new Gson();
+        ArrayList<Integer> arrayList = (ArrayList<Integer>) gson.fromJson(string, ArrayList.class);
+        return arrayList;
     }
     public void open() throws SQLException {
 
@@ -60,7 +67,8 @@ public class DBAdapter {
         values.put(HabitEntry.COLUMN_HABIT_CATEGORY,habit.getCategory());
         values.put(HabitEntry.COLUMN_HABIT_NOTIFICATION,habit.getReminder());
         values.put(HabitEntry.COLUMN_hABIT_START_DATE,habit.getStartDate());
-        String days = ArrayListToString(habit.getNumberOfDays());
+        Log.d(TAG,String.valueOf(habit.getDays().size()));
+        String days = ArrayListToString(habit.getDays());
         values.put(HabitEntry.COLUMN_HABIT_DAYS,days);
         Log.d(TAG,habit.getTitle());
         Log.d(TAG,habit.getDescription());
@@ -92,7 +100,7 @@ public class DBAdapter {
 
     }
 
-    public ArrayList<Habit> getAllData(){
+    public ArrayList<Habit> getAllData() throws JSONException{
 
         ArrayList<Habit> habits = new ArrayList<>();
         ContentValues values = new ContentValues();
@@ -110,7 +118,7 @@ public class DBAdapter {
         return habits;
 
     }
-    private Habit cursorToHabit(Cursor cursor){
+    private Habit cursorToHabit(Cursor cursor) throws JSONException{
 
         Habit h = new Habit("","","",0,0,"");
         h.setTitle(cursor.getString(1));
@@ -118,6 +126,8 @@ public class DBAdapter {
         h.setCategory(cursor.getString(3));
         h.setNotificationTime(cursor.getInt(6));
         h.setStartDate(cursor.getString(7));
+        h.setDays(stringToArrayList(cursor.getString(4)));
+
         /*
         try {
             JSONObject object = new JSONObject(cursor.getString(3));

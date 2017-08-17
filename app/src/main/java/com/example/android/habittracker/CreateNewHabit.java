@@ -39,6 +39,7 @@ public class CreateNewHabit extends AppCompatActivity {
     private RadioGroup radioGroup;
     private RadioButton yesRadioButton;
     private TimePicker timePicker;
+    private EditText numberOfDaysEditText;
     private static String TAG = CreateNewHabit.class.toString();
 
     @Override
@@ -49,6 +50,7 @@ public class CreateNewHabit extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Add New Habit");
         spinner = (Spinner) findViewById(R.id.categoriesSpinner);
+        numberOfDaysEditText = (EditText) findViewById(R.id.habitDaysEditText);
         titleEditText = (EditText) findViewById(R.id.habitNameEditText);
         descriptionEditText = (EditText) findViewById(R.id.habitDescriptionEditText);
         timePicker = (TimePicker) findViewById(R.id.time_picker);
@@ -74,17 +76,21 @@ public class CreateNewHabit extends AppCompatActivity {
 
         Habit h;
         if (timePicker.getVisibility() == View.VISIBLE) {
-            Log.d(TAG, dateString);
+     //       Log.d(TAG, dateString);
             h = new Habit(titleEditText.getText().toString(),
                     descriptionEditText.getText().toString()
-                    , spinner.getSelectedItem().toString(), 0, 0, timePicker.getHour(), dateString);
+                    , spinner.getSelectedItem().toString(), Integer.parseInt(numberOfDaysEditText.getText().toString())
+                    , 0, timePicker.getHour(), dateString);
 
         } else {
+   //         Log.d(TAG,String.valueOf(Integer.parseInt(numberOfDaysEditText.getText().toString())));
             h = new Habit(titleEditText.getText().toString(),
                     descriptionEditText.getText().toString()
-                    , spinner.getSelectedItem().toString(), 0, 0, dateString);
+                    , spinner.getSelectedItem().toString(), Integer.parseInt(numberOfDaysEditText.getText().toString())
+                    , 0, dateString);
 
         }
+
         MainActivity.habitsList.add(h);
         MainActivity.dbAdapter.addHabit(h);
 

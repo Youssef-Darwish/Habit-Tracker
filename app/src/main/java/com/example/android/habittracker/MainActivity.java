@@ -24,6 +24,8 @@ import com.example.android.habittracker.HabitsAdapter.HabitViewHolder;
 import com.example.android.habittracker.data.DBAdapter;
 import com.example.android.habittracker.data.Habit;
 
+import org.json.JSONException;
+
 import java.util.ArrayList;
 
 import static junit.runner.Version.id;
@@ -40,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     public static DBAdapter dbAdapter;
     public static String TAG  = MainActivity.class.toString();
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -50,17 +52,24 @@ public class MainActivity extends AppCompatActivity {
         mrecyclerview = (RecyclerView) findViewById(R.id.recycler_view);
         dbAdapter = new DBAdapter(this);
         dbAdapter.open();
-        habitsList = dbAdapter.getAllData();
-        mAdapter = new HabitsAdapter(habitsList);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
-        mrecyclerview.setLayoutManager(mLayoutManager);
-        mrecyclerview.setAdapter(mAdapter);
-        mAdapter.notifyDataSetChanged();
+        try{
+            habitsList = dbAdapter.getAllData();
+            mAdapter = new HabitsAdapter(habitsList);
+            RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+            mrecyclerview.setLayoutManager(mLayoutManager);
+            mrecyclerview.setAdapter(mAdapter);
+            mAdapter.notifyDataSetChanged();
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        /*
         for (int i = 0; i < habitsList.size(); i++) {
             System.out.println(habitsList.get(i).getTitle());
             System.out.println(habitsList.get(i).getDescription());
             System.out.println(habitsList.get(i).getCategory());
         }
+        */
         //makeFakeData();
 
 

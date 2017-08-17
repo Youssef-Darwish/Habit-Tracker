@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 /**
  * Created by youssef on 22/07/17.
- * This class defines the basic attributs of habit that will be
+ * This class defines the basic attributes of habit that will be
  * added, edit or deleted
  */
 
@@ -24,14 +24,17 @@ public class Habit {
         this.category = catg;
         this.description = desc;
         numberOfDays = new ArrayList<>(days);
+        initializeDaysValues(days);
         this.reminder = remind;
         startDate = date;
+
     }
 
     public Habit(String title, String catg, int days, int remind, String date) {
         this.title = title;
         this.category = catg;
         numberOfDays = new ArrayList<>(days);
+        initializeDaysValues(days);
         this.reminder = remind;
         startDate = date;
     }
@@ -41,6 +44,7 @@ public class Habit {
         this.category = catg;
         this.description = desc;
         numberOfDays = new ArrayList<>(days);
+        initializeDaysValues(days);
         this.reminder = remind;
         this.notificationTime = notificationTime;
         startDate = date;
@@ -56,6 +60,7 @@ public class Habit {
 
     }
 
+
     public void setCategory(String catg) {
         category = catg;
     }
@@ -68,8 +73,22 @@ public class Habit {
         reminder = remind;
     }
 
+    // to mark this habit as done or not on the given day
+
+    public void modifyDay(int day, int value) {
+        numberOfDays.set(day, value);
+    }
+
+    public void setDays(ArrayList<Integer> days) {
+        numberOfDays = days;
+    }
+
     public void setNumberOfDays(ArrayList<Integer> arrayList) {
         numberOfDays = arrayList;
+    }
+
+    public void setStartDate(String date) {
+        this.startDate = date;
     }
 
     public String getTitle() {
@@ -84,14 +103,15 @@ public class Habit {
         return category;
     }
 
-    public String getStartDate(){
+    public String getStartDate() {
         return startDate;
     }
-    public void setStartDate(String date){
-        this.startDate = date;
+
+    public int getNumberOfDays() {
+        return numberOfDays.size();
     }
 
-    public ArrayList<Integer> getNumberOfDays() {
+    public ArrayList<Integer> getDays() {
         return numberOfDays;
     }
 
@@ -104,5 +124,9 @@ public class Habit {
         return this.reminder;
     }
 
-
+    public void initializeDaysValues(int size){
+        for (int i=0;i<size;i++){
+            numberOfDays.set(i,0);
+        }
+    }
 }

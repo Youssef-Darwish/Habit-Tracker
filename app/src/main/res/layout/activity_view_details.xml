@@ -87,5 +87,13 @@
 
     </RadioGroup>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        android:id="@+id/save_progress_button"
+        android:onClick="saveProgress"
+        android:text="Save Progress"/>
+
 
 </LinearLayout>

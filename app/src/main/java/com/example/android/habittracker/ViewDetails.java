@@ -5,17 +5,26 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import static android.R.id.edit;
+import static android.R.id.switch_widget;
 
 public class ViewDetails extends AppCompatActivity {
 
@@ -25,8 +34,11 @@ public class ViewDetails extends AppCompatActivity {
     private TextView categoryTextView;
     private int position;
     private String category;
-
-    private String url = "http://lorempixel.com/400/200/";
+    private RadioGroup radioGroup;
+    private RadioButton doneRadioButton, missedRadioButton;
+    private Date startDate, todaysDate;
+    private static String TAG = ViewDetails.class.toString();
+    //private String url = "http://lorempixel.com/400/200/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +50,9 @@ public class ViewDetails extends AppCompatActivity {
         titleTextView = (TextView) findViewById(R.id.title_show_details);
         descriptionTextView = (TextView) findViewById(R.id.description_show_details);
         categoryTextView = (TextView) findViewById(R.id.category_show_details);
+        radioGroup = (RadioGroup) findViewById(R.id.radio_select_progress_type);
+        doneRadioButton = (RadioButton) findViewById(R.id.radio_did_it);
+        missedRadioButton = (RadioButton) findViewById(R.id.radio_missed_it);
         Bundle extras = getIntent().getExtras();
         titleTextView.setText(extras.getString("Title"));
         descriptionTextView.setText(extras.getString("Description"));
@@ -84,6 +99,42 @@ public class ViewDetails extends AppCompatActivity {
         }
 
         return true;
+    }
+
+    public void saveProgress(View view) {
+
+        int numberOfDays;
+        try {
+            todaysDate = new Date();
+            startDate = new SimpleDateFormat("dd/MM/yyyy").
+                    parse(MainActivity.habitsList.get(position).getStartDate());
+            Log.d(TAG,todaysDate.toString());
+            Log.d(TAG,startDate.toString());
+            long diff = todaysDate.getTime() - startDate.getTime();
+            numberOfDays = (int) (diff / (1000 * 60 * 60 * 24));
+
+            int selectedId = radioGroup.getCheckedRadioButtonId();
+            if (selectedId == R.id.radio_missed_it) {
+                MainActivity.habitsList.get(position).modifyDay(numberOfDays, 0);
+            } else if (selectedId == R.id.radio_did_it) {
+                int size = MainActivity.habitsList.get(position).getDays().size();
+                System.out.println(size);
+                String title = MainActivity.habitsList.get(position).getTitle();
+                System.out.println(title);
+                MainActivity.habitsList.get(position).modifyDay(numberOfDays, 1);
+            }
+            MainActivity.dbAdapter.updateHabit(MainActivity.habitsList.get(position).getTitle(),
+                    MainActivity.habitsList.get(position));
+            MainActivity.mAdapter.notifyDataSetChanged();
+            Log.d("date modified", String.valueOf(numberOfDays));
+            Log.d("","");
+        } catch (Exception e) {
+            e.printStackTrace();
+            // add toast to indicate error
+        }
+
+
+        finish();
     }
 /*
     @Override
