@@ -28,9 +28,6 @@ import org.json.JSONException;
 
 import java.util.ArrayList;
 
-import static junit.runner.Version.id;
-
-
 public class MainActivity extends AppCompatActivity {
 
 
@@ -40,9 +37,10 @@ public class MainActivity extends AppCompatActivity {
     public static HabitsAdapter mAdapter;
     private Toolbar toolbar;
     public static DBAdapter dbAdapter;
-    public static String TAG  = MainActivity.class.toString();
+    public static String TAG = MainActivity.class.toString();
+
     @Override
-    protected void onCreate(Bundle savedInstanceState)  {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -52,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         mrecyclerview = (RecyclerView) findViewById(R.id.recycler_view);
         dbAdapter = new DBAdapter(this);
         dbAdapter.open();
-        try{
+        try {
             habitsList = dbAdapter.getAllData();
             mAdapter = new HabitsAdapter(habitsList);
             RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
@@ -63,15 +61,6 @@ public class MainActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        /*
-        for (int i = 0; i < habitsList.size(); i++) {
-            System.out.println(habitsList.get(i).getTitle());
-            System.out.println(habitsList.get(i).getDescription());
-            System.out.println(habitsList.get(i).getCategory());
-        }
-        */
-        //makeFakeData();
-
 
         makeNotification();
     }
@@ -104,20 +93,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-/*
-    private void makeFakeData() {
-        Habit h = new Habit("title1", "description1", "", 0, 0);
-        habitsList.add(h);
 
-        for (int i = 0; i < 20; i++) {
-            h = new Habit("title" + String.valueOf(i), "description" + String.valueOf(i),
-                    "category " + String.valueOf(i), 0, 0);
-            habitsList.add(h);
-        }
-
-        mAdapter.notifyDataSetChanged();
-    }
-*/
     public void viewDetails(View view) {
 
         HabitViewHolder holder = (HabitViewHolder) view.getTag();

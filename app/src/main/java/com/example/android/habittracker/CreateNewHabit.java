@@ -41,6 +41,8 @@ public class CreateNewHabit extends AppCompatActivity {
     private TimePicker timePicker;
     private EditText numberOfDaysEditText;
     private static String TAG = CreateNewHabit.class.toString();
+    private int numberOfDays;
+    private static int DEFAULT_NUMBER_OF_DAYS = 30;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,30 +76,45 @@ public class CreateNewHabit extends AppCompatActivity {
         Date todaysDate = new Date();
         String dateString = dateFormat.format(todaysDate);
 
-        Habit h;
-        if (timePicker.getVisibility() == View.VISIBLE) {
-           //Log.d(TAG, dateString);
-            //System.out.println(Integer.parseInt(numberOfDaysEditText.getText().toString()));
-            h = new Habit(titleEditText.getText().toString(),
-                    descriptionEditText.getText().toString()
-                    , spinner.getSelectedItem().toString(), Integer.parseInt(numberOfDaysEditText.getText().toString())
-                    , 0, timePicker.getHour(), dateString);
+        if (validateUserInput()) {
+            Habit h;
 
+            if (timePicker.getVisibility() == View.VISIBLE) {
+                //Log.d(TAG, dateString);
+                //System.out.println(Integer.parseInt(numberOfDaysEditText.getText().toString()));
+                h = new Habit(titleEditText.getText().toString(),
+                        descriptionEditText.getText().toString()
+                        , spinner.getSelectedItem().toString(), numberOfDays
+                        , 0, timePicker.getHour(), dateString);
+
+            } else {
+                //         Log.d(TAG,String.valueOf(Integer.parseInt(numberOfDaysEditText.getText().toString())));
+                h = new Habit(titleEditText.getText().toString(),
+                        descriptionEditText.getText().toString()
+                        , spinner.getSelectedItem().toString(), numberOfDays
+                        , 0, dateString);
+
+            }
+            MainActivity.habitsList.add(h);
+            MainActivity.dbAdapter.addHabit(h);
+            MainActivity.mAdapter.notifyDataSetChanged();
+            finish();
         } else {
-   //         Log.d(TAG,String.valueOf(Integer.parseInt(numberOfDaysEditText.getText().toString())));
-            h = new Habit(titleEditText.getText().toString(),
-                    descriptionEditText.getText().toString()
-                    , spinner.getSelectedItem().toString(), Integer.parseInt(numberOfDaysEditText.getText().toString())
-                    , 0, dateString);
+            Toast toast = new Toast(this);
+            toast.makeText(this, "Invalid Input", Toast.LENGTH_LONG).show();
+        }
+    }
 
+    private boolean validateUserInput() {
+        if (titleEditText.getText().toString().matches("")) {
+            return false;
+        }
+        if (numberOfDaysEditText.getText().toString().matches("")) {
+            numberOfDays = DEFAULT_NUMBER_OF_DAYS;
+        } else {
+            numberOfDays = Integer.parseInt(numberOfDaysEditText.getText().toString());
         }
 
-        MainActivity.habitsList.add(h);
-        MainActivity.dbAdapter.addHabit(h);
-
-        MainActivity.mAdapter.notifyDataSetChanged();
-        Toast toast = new Toast(this);
-        toast.makeText(this, "Habit added", Toast.LENGTH_LONG).show();
-        finish();
+        return true;
     }
 }

@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.example.android.habittracker.MainActivity;
 
 import org.json.JSONException;
@@ -21,40 +22,36 @@ public class EditActivity extends AppCompatActivity {
     private EditText categoryEditText;
     private Toolbar toolbar;
     private int position;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit);
 
-        titleEditView = (EditText)findViewById(R.id.titleEditText);
+        titleEditView = (EditText) findViewById(R.id.titleEditText);
         descriptionEditView = (EditText) findViewById(R.id.descriptionEditText);
-        categoryEditText  =(EditText) findViewById(R.id.categoryEditText);
-        toolbar = (Toolbar)findViewById(R.id.toolbar);
+        categoryEditText = (EditText) findViewById(R.id.categoryEditText);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         Bundle extras = getIntent().getExtras();
         titleEditView.setText(extras.getString("title"));
         descriptionEditView.setText(extras.getString("description"));
         categoryEditText.setText(extras.getString("category"));
         position = extras.getInt("position");
-       // Intent returnIntent = new Intent();
         Toast toast = new Toast(this);
-        toast.makeText(this,"entered",Toast.LENGTH_LONG).show();
-       // setResult(Activity.RESULT_CANCELED,returnIntent);
-        //finish();
+        toast.makeText(this, "entered", Toast.LENGTH_LONG).show();
 
     }
 
-    public void saveChanges(View view) throws JSONException{
+    public void saveChanges(View view) throws JSONException {
 
         String oldTitle = MainActivity.habitsList.get(position).getTitle();
         MainActivity.habitsList.get(position).setTitle(titleEditView.getText().toString());
         MainActivity.habitsList.get(position).setDescription(descriptionEditView.getText().toString());
         MainActivity.habitsList.get(position).setCategory(categoryEditText.getText().toString());
-        MainActivity.dbAdapter.updateHabit(oldTitle,MainActivity.habitsList.get(position));
-        // we will encounter a problem while updating
-        // MainActivity.dbAdapter.updateHabit();
+        MainActivity.dbAdapter.updateHabit(oldTitle, MainActivity.habitsList.get(position));
         MainActivity.mAdapter.notifyDataSetChanged();
-        Intent intent = new Intent(this,MainActivity.class);
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 }

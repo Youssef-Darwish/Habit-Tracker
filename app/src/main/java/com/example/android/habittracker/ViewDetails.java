@@ -1,6 +1,6 @@
 package com.example.android.habittracker;
 
-import android.app.Activity;
+
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,24 +8,15 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-
 import android.view.View;
-import android.widget.CheckBox;
-import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import static android.R.id.edit;
-import static android.R.id.switch_widget;
 
 public class ViewDetails extends AppCompatActivity {
 
@@ -39,7 +30,6 @@ public class ViewDetails extends AppCompatActivity {
     private RadioButton doneRadioButton, missedRadioButton;
     private Date startDate, todaysDate;
     private static String TAG = ViewDetails.class.toString();
-    //private String url = "http://lorempixel.com/400/200/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,13 +48,6 @@ public class ViewDetails extends AppCompatActivity {
         titleTextView.setText(extras.getString("Title"));
         descriptionTextView.setText(extras.getString("Description"));
         categoryTextView.setText(extras.getString("category"));
-
-/*
-        Glide
-                .with(this)
-                .load(url)
-                .into(imageView);
-*/
         position = extras.getInt("position");
         category = extras.getString("category");
 
@@ -93,10 +76,7 @@ public class ViewDetails extends AppCompatActivity {
             MainActivity.dbAdapter.deleteHabit(MainActivity.habitsList.get(position));
             MainActivity.habitsList.remove(position);
             MainActivity.mAdapter.notifyDataSetChanged();
-
             finish();
-
-
         }
 
         return true;
@@ -106,11 +86,11 @@ public class ViewDetails extends AppCompatActivity {
 
         int numberOfDays;
         try {
-            todaysDate = new  SimpleDateFormat("dd/MM/yyyy").parse("21/08/2017");
+            todaysDate = new SimpleDateFormat("dd/MM/yyyy").parse("21/08/2017");
             startDate = new SimpleDateFormat("dd/MM/yyyy").
                     parse(MainActivity.habitsList.get(position).getStartDate());
-            Log.d(TAG,todaysDate.toString());
-            Log.d(TAG,startDate.toString());
+            Log.d(TAG, todaysDate.toString());
+            Log.d(TAG, startDate.toString());
             long diff = todaysDate.getTime() - startDate.getTime();
             numberOfDays = (int) (diff / (1000 * 60 * 60 * 24));
 
@@ -129,25 +109,15 @@ public class ViewDetails extends AppCompatActivity {
             MainActivity.mAdapter.notifyDataSetChanged();
             Log.d("date modified", String.valueOf(numberOfDays));
             ArrayList<Integer> temp = MainActivity.habitsList.get(position).getDays();
-            for(int i =0; i<temp.size();i++){
-                Log.d(TAG,String.valueOf(temp.get(i)));
+            for (int i = 0; i < temp.size(); i++) {
+                Log.d(TAG, String.valueOf(temp.get(i)));
             }
         } catch (Exception e) {
             e.printStackTrace();
             // add toast to indicate error
         }
-
-
         finish();
     }
-/*
-    @Override
-    protected void onPause() {
-        super.onPause();
-        Glide.clear(imageView);
-    }
-    */
-
 }
 
 
