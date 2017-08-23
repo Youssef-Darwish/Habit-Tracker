@@ -13,9 +13,18 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.data.PieEntry;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
+import static android.R.attr.entries;
 
 
 public class ViewDetails extends AppCompatActivity {
@@ -30,14 +39,17 @@ public class ViewDetails extends AppCompatActivity {
     private RadioButton doneRadioButton, missedRadioButton;
     private Date startDate, todaysDate;
     private static String TAG = ViewDetails.class.toString();
+    private PieChart chart ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_details);
         toolbar = (Toolbar) findViewById(R.id.toolbar_edit);
+
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Habit Details");
+        chart = (PieChart) findViewById(R.id.chart);
         titleTextView = (TextView) findViewById(R.id.title_show_details);
         descriptionTextView = (TextView) findViewById(R.id.description_show_details);
         categoryTextView = (TextView) findViewById(R.id.category_show_details);
@@ -50,7 +62,7 @@ public class ViewDetails extends AppCompatActivity {
         categoryTextView.setText(extras.getString("category"));
         position = extras.getInt("position");
         category = extras.getString("category");
-
+        showChart();
     }
 
     @Override
@@ -78,6 +90,7 @@ public class ViewDetails extends AppCompatActivity {
             MainActivity.mAdapter.notifyDataSetChanged();
             finish();
         }
+
 
         return true;
     }
@@ -117,6 +130,50 @@ public class ViewDetails extends AppCompatActivity {
             // add toast to indicate error
         }
         finish();
+    }
+    public void showChart(){
+
+/*
+        int done,missed;
+        done=missed=0;
+        ArrayList<Integer> days = MainActivity.habitsList.get(position).getDays();
+        for(int i=0; i<days.size();i++){
+            System.out.println(days.get(i));
+        }
+        for (int i=0; i<days.size();i++){
+
+            if(days.get(i)==1.0){
+                done++;
+            }
+            else{
+                missed++;
+            }
+        }
+        float donePercent = (done/days.size())*100;
+        float missedPercent = (missed/days.size())*100;
+*/
+        List<PieEntry> entries = new ArrayList<>();
+
+        entries.add(new PieEntry(18.5f, "Green"));
+        entries.add(new PieEntry(26.7f, "Yellow"));
+        entries.add(new PieEntry(24.0f, "Red"));
+        entries.add(new PieEntry(30.8f, "Blue"));
+
+        PieDataSet set = new PieDataSet(entries, "Election Results");
+        PieData data = new PieData(set);
+        set.setColors(new int[]{R.color.black,R.color.aqua,R.color.green,R.color.maroon},this);
+        chart.setData(data);
+        chart.invalidate(); // refresh
+
+
+
+
+
+
+
+
+
+
     }
 }
 

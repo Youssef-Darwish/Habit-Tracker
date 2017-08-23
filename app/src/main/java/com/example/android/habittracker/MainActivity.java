@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        makeNotification();
+       // makeNotification();
     }
 
     @Override
@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     */
-
+/*
     @TargetApi(Build.VERSION_CODES.M)
     private void makeNotification() {
         NotificationCompat.Builder mBuilder =
@@ -159,4 +159,5 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+    */
 }
