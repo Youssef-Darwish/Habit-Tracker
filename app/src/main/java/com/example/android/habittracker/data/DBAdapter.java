@@ -2,24 +2,23 @@ package com.example.android.habittracker.data;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
-import com.example.android.habittracker.data.Habit;
+
 import com.example.android.habittracker.data.HabitContract.HabitEntry;
 import com.google.gson.Gson;
 
-import org.json.JSONArray;
+
 import org.json.JSONException;
-import org.json.JSONObject;
+
 
 import java.util.ArrayList;
 
 /**
- * Created by youssef on 22/07/17.
+ * Created by Youssef on 22/07/17.
  *
  */
 
@@ -38,13 +37,13 @@ public class DBAdapter {
 
 
 
-    public String ArrayListToString(ArrayList<Integer> days) throws JSONException {
+    private String ArrayListToString(ArrayList<Integer> days) throws JSONException {
 
         Gson gson = new Gson();
         return gson.toJson(days);
     }
 
-    public ArrayList<Integer> stringToArrayList(String string) throws JSONException{
+    private ArrayList<Integer> stringToArrayList(String string) throws JSONException{
         Gson gson = new Gson();
         ArrayList<Integer> arrayList = (ArrayList<Integer>) gson.fromJson(string, ArrayList.class);
         return arrayList;

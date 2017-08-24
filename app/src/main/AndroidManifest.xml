@@ -24,6 +24,7 @@
         <activity android:name=".AboutActivity" />
         <activity android:name=".item" />
         <activity android:name=".ViewDetails" />
+        <activity android:name=".ShowStats"></activity>
     </application>
 
 </manifest>

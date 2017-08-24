@@ -133,17 +133,18 @@ public class ViewDetails extends AppCompatActivity {
     }
     public void showChart(){
 
-/*
+
         int done,missed;
         done=missed=0;
         ArrayList<Integer> days = MainActivity.habitsList.get(position).getDays();
         for(int i=0; i<days.size();i++){
-            System.out.println(days.get(i));
+            Log.e("View Details",String.valueOf(days.get(i)));
         }
         for (int i=0; i<days.size();i++){
-
+            Log.e("bla bla",String.valueOf(days.get(i).getClass()));
             if(days.get(i)==1.0){
                 done++;
+
             }
             else{
                 missed++;
@@ -151,7 +152,7 @@ public class ViewDetails extends AppCompatActivity {
         }
         float donePercent = (done/days.size())*100;
         float missedPercent = (missed/days.size())*100;
-*/
+
         List<PieEntry> entries = new ArrayList<>();
 
         entries.add(new PieEntry(18.5f, "Green"));
