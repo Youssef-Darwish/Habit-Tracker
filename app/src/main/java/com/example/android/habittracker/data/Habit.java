@@ -17,7 +17,7 @@ public class Habit {
     private String description;
     private String category;
     private int reminder;
-    private ArrayList<Integer> numberOfDays;
+    private ArrayList<Double> numberOfDays;
     private int notificationTime;
     private String startDate;
     private static String TAG = Habit.class.toString();
@@ -26,7 +26,7 @@ public class Habit {
         this.category = catg;
         this.description = desc;
       //  Log.d(TAG,String.valueOf(days));
-        numberOfDays = new ArrayList<Integer>(days);
+        numberOfDays = new ArrayList<Double>(days);
 
         initializeDaysValues(days);
         this.reminder = remind;
@@ -37,7 +37,7 @@ public class Habit {
     public Habit(String title, String catg, int days, int remind, String date) {
         this.title = title;
         this.category = catg;
-        numberOfDays = new ArrayList<Integer>(days);
+        numberOfDays = new ArrayList<Double>(days);
 
         initializeDaysValues(days);
         this.reminder = remind;
@@ -81,15 +81,15 @@ public class Habit {
 
     // to mark this habit as done or not on the given day
 
-    public void modifyDay(int day, int value) {
+    public void modifyDay(int day, double value) {
         numberOfDays.set(day, value);
     }
 
-    public void setDays(ArrayList<Integer> days) {
+    public void setDays(ArrayList<Double> days) {
         numberOfDays = days;
     }
 
-    public void setNumberOfDays(ArrayList<Integer> arrayList) {
+    public void setNumberOfDays(ArrayList<Double> arrayList) {
         numberOfDays = arrayList;
     }
 
@@ -117,7 +117,7 @@ public class Habit {
         return numberOfDays.size();
     }
 
-    public ArrayList<Integer> getDays() {
+    public ArrayList<Double> getDays() {
         return numberOfDays;
     }
 
@@ -132,7 +132,7 @@ public class Habit {
 
     public void initializeDaysValues(int size){
         for (int i=0;i<size;i++){
-            numberOfDays.add(0);
+            numberOfDays.add(0.0);
         }
     }
 }

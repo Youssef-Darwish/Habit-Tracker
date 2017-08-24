@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.LoginFilter;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -99,7 +100,7 @@ public class ViewDetails extends AppCompatActivity {
 
         int numberOfDays;
         try {
-            todaysDate = new SimpleDateFormat("dd/MM/yyyy").parse("21/08/2017");
+            todaysDate = new SimpleDateFormat("dd/MM/yyyy").parse("26/08/2017");
             startDate = new SimpleDateFormat("dd/MM/yyyy").
                     parse(MainActivity.habitsList.get(position).getStartDate());
             Log.d(TAG, todaysDate.toString());
@@ -121,7 +122,7 @@ public class ViewDetails extends AppCompatActivity {
                     MainActivity.habitsList.get(position));
             MainActivity.mAdapter.notifyDataSetChanged();
             Log.d("date modified", String.valueOf(numberOfDays));
-            ArrayList<Integer> temp = MainActivity.habitsList.get(position).getDays();
+            ArrayList<Double> temp = MainActivity.habitsList.get(position).getDays();
             for (int i = 0; i < temp.size(); i++) {
                 Log.d(TAG, String.valueOf(temp.get(i)));
             }
@@ -136,33 +137,33 @@ public class ViewDetails extends AppCompatActivity {
 
         int done,missed;
         done=missed=0;
-        ArrayList<Integer> days = MainActivity.habitsList.get(position).getDays();
+        ArrayList<Double> days = MainActivity.habitsList.get(position).getDays();
         for(int i=0; i<days.size();i++){
             Log.e("View Details",String.valueOf(days.get(i)));
         }
         for (int i=0; i<days.size();i++){
-            Log.e("bla bla",String.valueOf(days.get(i).getClass()));
-            if(days.get(i)==1.0){
+            if(days.get(i)==(double)1){
                 done++;
-
             }
             else{
                 missed++;
             }
         }
-        float donePercent = (done/days.size())*100;
-        float missedPercent = (missed/days.size())*100;
+        Log.e("view details",String.valueOf(done));
+        Log.e("view details",String.valueOf(missed));
+        float donePercent = ((float)done/days.size())*100;
+        float missedPercent =((float)missed/days.size())*100;
+        Log.e("view details",String.valueOf(donePercent));
+        Log.e("view details",String.valueOf(missedPercent));
 
         List<PieEntry> entries = new ArrayList<>();
 
-        entries.add(new PieEntry(18.5f, "Green"));
-        entries.add(new PieEntry(26.7f, "Yellow"));
-        entries.add(new PieEntry(24.0f, "Red"));
-        entries.add(new PieEntry(30.8f, "Blue"));
+        entries.add(new PieEntry(donePercent, "Done"));
+        entries.add(new PieEntry(missedPercent, "Missed"));
 
-        PieDataSet set = new PieDataSet(entries, "Election Results");
+        PieDataSet set = new PieDataSet(entries, "progress Results");
         PieData data = new PieData(set);
-        set.setColors(new int[]{R.color.black,R.color.aqua,R.color.green,R.color.maroon},this);
+        set.setColors(new int[]{R.color.black,R.color.aqua},this);
         chart.setData(data);
         chart.invalidate(); // refresh
 

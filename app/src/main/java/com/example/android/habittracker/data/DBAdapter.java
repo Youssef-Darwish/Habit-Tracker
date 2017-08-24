@@ -37,15 +37,15 @@ public class DBAdapter {
 
 
 
-    private String ArrayListToString(ArrayList<Integer> days) throws JSONException {
+    private String ArrayListToString(ArrayList<Double> days) throws JSONException {
 
         Gson gson = new Gson();
         return gson.toJson(days);
     }
 
-    private ArrayList<Integer> stringToArrayList(String string) throws JSONException{
+    private ArrayList<Double> stringToArrayList(String string) throws JSONException{
         Gson gson = new Gson();
-        ArrayList<Integer> arrayList = (ArrayList<Integer>) gson.fromJson(string, ArrayList.class);
+        ArrayList<Double> arrayList = (ArrayList<Double>) gson.fromJson(string, ArrayList.class);
         return arrayList;
     }
     public void open() throws SQLException {
