@@ -40,7 +40,6 @@ public class ViewDetails extends AppCompatActivity {
     private RadioButton doneRadioButton, missedRadioButton;
     private Date startDate, todaysDate;
     private static String TAG = ViewDetails.class.toString();
-    private PieChart chart ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +49,6 @@ public class ViewDetails extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Habit Details");
-        chart = (PieChart) findViewById(R.id.chart);
         titleTextView = (TextView) findViewById(R.id.title_show_details);
         descriptionTextView = (TextView) findViewById(R.id.description_show_details);
         categoryTextView = (TextView) findViewById(R.id.category_show_details);
@@ -63,7 +61,7 @@ public class ViewDetails extends AppCompatActivity {
         categoryTextView.setText(extras.getString("category"));
         position = extras.getInt("position");
         category = extras.getString("category");
-        showChart();
+
     }
 
     @Override
@@ -100,7 +98,7 @@ public class ViewDetails extends AppCompatActivity {
 
         int numberOfDays;
         try {
-            todaysDate = new SimpleDateFormat("dd/MM/yyyy").parse("26/08/2017");
+            todaysDate = new Date();
             startDate = new SimpleDateFormat("dd/MM/yyyy").
                     parse(MainActivity.habitsList.get(position).getStartDate());
             Log.d(TAG, todaysDate.toString());
@@ -132,29 +130,33 @@ public class ViewDetails extends AppCompatActivity {
         }
         finish();
     }
-    public void showChart(){
+
+    public void showStats(View view) {
 
 
-        int done,missed;
-        done=missed=0;
         ArrayList<Double> days = MainActivity.habitsList.get(position).getDays();
+      /*
         for(int i=0; i<days.size();i++){
             Log.e("View Details",String.valueOf(days.get(i)));
         }
-        for (int i=0; i<days.size();i++){
-            if(days.get(i)==(double)1){
+        */
+        Intent intent = new Intent(this, ShowStats.class);
+        intent.putExtra("days", days);
+        startActivity(intent);
+        /*
+        for (int i = 0; i < days.size(); i++) {
+            if (days.get(i) == (double) 1) {
                 done++;
-            }
-            else{
+            } else {
                 missed++;
             }
         }
-        Log.e("view details",String.valueOf(done));
-        Log.e("view details",String.valueOf(missed));
-        float donePercent = ((float)done/days.size())*100;
-        float missedPercent =((float)missed/days.size())*100;
-        Log.e("view details",String.valueOf(donePercent));
-        Log.e("view details",String.valueOf(missedPercent));
+        Log.e("view details", String.valueOf(done));
+        Log.e("view details", String.valueOf(missed));
+        float donePercent = ((float) done / days.size()) * 100;
+        float missedPercent = ((float) missed / days.size()) * 100;
+        Log.e("view details", String.valueOf(donePercent));
+        Log.e("view details", String.valueOf(missedPercent));
 
         List<PieEntry> entries = new ArrayList<>();
 
@@ -163,19 +165,11 @@ public class ViewDetails extends AppCompatActivity {
 
         PieDataSet set = new PieDataSet(entries, "progress Results");
         PieData data = new PieData(set);
-        set.setColors(new int[]{R.color.black,R.color.aqua},this);
+        set.setColors(new int[]{R.color.black, R.color.aqua}, this);
         chart.setData(data);
         chart.invalidate(); // refresh
 
-
-
-
-
-
-
-
-
-
+*/
     }
 }
 
