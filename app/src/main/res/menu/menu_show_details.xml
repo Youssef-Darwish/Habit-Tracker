@@ -21,5 +21,14 @@
         >
 
     </item>
+    <item
+        android:title="Archive"
+        android:id="@+id/archive_icon"
+        android:icon="@drawable/archive"
+        android:layout_height="10dp"
+        android:layout_width="10dp"
+        app:showAsAction="ifRoom">
+
+    </item>
 
 </menu>
