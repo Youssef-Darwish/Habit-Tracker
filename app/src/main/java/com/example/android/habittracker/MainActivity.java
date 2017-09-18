@@ -7,6 +7,7 @@ import android.app.PendingIntent;
 import android.app.TaskStackBuilder;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -38,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private Toolbar toolbar;
     public static DBAdapter dbAdapter;
     public static String TAG = MainActivity.class.toString();
-
+    private SharedPreferences pref;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,7 +63,21 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-       // makeNotification();
+        pref = getApplicationContext().getSharedPreferences("Account",0);
+        SharedPreferences.Editor editor = pref.edit();
+        editor.putString("password","new password");
+        editor.commit();
+        if (pref.contains("password")){
+
+            String password = pref.getString("passwrod",null);
+            Intent intent = new Intent(this,Login.class);
+            intent.putExtra("password",password);
+            startActivity(intent);
+
+        }
+
+
+
     }
 
     @Override
