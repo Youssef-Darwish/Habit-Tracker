@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         pref = getApplicationContext().getSharedPreferences("Account",0);
         SharedPreferences.Editor editor = pref.edit();
         editor.putString("password","new password");
-        editor.commit();
+        editor.apply();
         if (pref.contains("password")){
 
             String password = pref.getString("passwrod",null);
