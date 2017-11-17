@@ -63,20 +63,19 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        pref = getApplicationContext().getSharedPreferences("Account",0);
+        pref = getApplicationContext().getSharedPreferences("Account",MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit();
-        editor.putString("password","new password");
+        editor.putString("password","pass");
         editor.apply();
         if (pref.contains("password")){
 
-            String password = pref.getString("passwrod",null);
+            String password = pref.getString("password",null);
+           // Log.d(TAG,password);
             Intent intent = new Intent(this,Login.class);
             intent.putExtra("password",password);
             startActivity(intent);
 
         }
-
-
 
     }
 

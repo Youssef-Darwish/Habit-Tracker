@@ -27,7 +27,7 @@ public class Login extends AppCompatActivity {
     public void submitPassword(View view) {
         String writtenPassword = PasswordEditText.getText().toString();
 
-        if (writtenPassword != null) {
+        if (!writtenPassword.matches("") && savedPassword!=null) {
 
 
             if (savedPassword.equals(writtenPassword)) {
