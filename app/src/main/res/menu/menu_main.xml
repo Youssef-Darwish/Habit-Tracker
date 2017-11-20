@@ -17,7 +17,7 @@
 
         android:title="password"
         android:icon="@drawable/password"
-        android:id="@+id/info_black_id"
+        android:id="@+id/lock_item"
         app:showAsAction = "ifRoom"
 
         >

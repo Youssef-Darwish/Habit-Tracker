@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     public static DBAdapter dbAdapter;
     public static String TAG = MainActivity.class.toString();
     private SharedPreferences pref;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,16 +64,14 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        pref = getApplicationContext().getSharedPreferences("Account",MODE_PRIVATE);
-        SharedPreferences.Editor editor = pref.edit();
-        editor.putString("password","pass");
-        editor.apply();
-        if (pref.contains("password")){
+        pref = getApplicationContext().getSharedPreferences("Account", MODE_PRIVATE);
+        pref.edit().remove("password").commit();
+        if (pref.contains("password")) {
 
-            String password = pref.getString("password",null);
-           // Log.d(TAG,password);
-            Intent intent = new Intent(this,Login.class);
-            intent.putExtra("password",password);
+            String password = pref.getString("password", null);
+            // Log.d(TAG,password);
+            Intent intent = new Intent(this, Login.class);
+            intent.putExtra("password", password);
             startActivity(intent);
 
         }
@@ -89,10 +88,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        if (item.getItemId() == R.id.info_black_id) {
-            Toast toast = new Toast(this);
-            toast.makeText(this, "info item was selected", Toast.LENGTH_LONG).show();
-            return true;
+        if (item.getItemId() == R.id.lock_item) {
+            Intent intent = new Intent(this, SetPassword.class);
+            startActivity(intent);
         } else if (item.getItemId() == R.id.add_habit_item) {
             Intent intent = new Intent(this, CreateNewHabit.class);
             startActivity(intent);
